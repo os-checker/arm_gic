@@ -5,9 +5,8 @@ edition = "2021"
 authors = ["Yuekai Jia <equation618@gmail.com>"]
 description = "ARM Generic Interrupt Controller (GIC) register definitions and basic operations"
 license = "GPL-3.0-or-later OR Apache-2.0"
-homepage = "https://github.com/rcore-os/arceos"
-repository = "https://github.com/rcore-os/arceos/tree/main/crates/arm_gic"
-documentation = "https://rcore-os.github.io/arceos/arm_gic/index.html"
+repository = "https://github.com/Starry-OS/arm_gic"
+documentation = "https://starry-os.github.io/arm_gic/arm_gic/index.html"
 keywords = ["Starry"]
 
 [dependencies]
