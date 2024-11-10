@@ -8,6 +8,7 @@
 //! Note:
 //!  - Interrupt grouping(secure state) is not supported
 //!  - Interrupt proiority(preempt) is not supported
+//!
 //! Please contact the developer if you need this function
 
 #![no_std]
@@ -119,6 +120,24 @@ pub const fn translate_irq(id: usize, int_type: InterruptType) -> Option<usize> 
                 None
             }
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_translate_irq() {
+        assert_eq!(translate_irq(0, InterruptType::SGI), Some(0));
+        assert_eq!(translate_irq(0, InterruptType::PPI), Some(16));
+        assert_eq!(translate_irq(0, InterruptType::SPI), Some(32));
+        assert_eq!(translate_irq(16, InterruptType::SGI), None);
+        assert_eq!(translate_irq(16, InterruptType::PPI), Some(32));
+        assert_eq!(translate_irq(16, InterruptType::SPI), Some(48));
+        assert_eq!(translate_irq(32, InterruptType::SGI), None);
+        assert_eq!(translate_irq(32, InterruptType::PPI), None);
+        assert_eq!(translate_irq(32, InterruptType::SPI), Some(32));
     }
 }
 
