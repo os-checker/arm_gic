@@ -133,11 +133,11 @@ mod tests {
         assert_eq!(translate_irq(0, InterruptType::PPI), Some(16));
         assert_eq!(translate_irq(0, InterruptType::SPI), Some(32));
         assert_eq!(translate_irq(16, InterruptType::SGI), None);
-        assert_eq!(translate_irq(16, InterruptType::PPI), Some(32));
+        assert_eq!(translate_irq(16, InterruptType::PPI), None);
         assert_eq!(translate_irq(16, InterruptType::SPI), Some(48));
         assert_eq!(translate_irq(32, InterruptType::SGI), None);
         assert_eq!(translate_irq(32, InterruptType::PPI), None);
-        assert_eq!(translate_irq(32, InterruptType::SPI), Some(32));
+        assert_eq!(translate_irq(32, InterruptType::SPI), Some(64));
     }
 }
 
