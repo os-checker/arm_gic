@@ -202,18 +202,18 @@ impl GicDistributor {
 
     fn mpidr_affinity_level(mpidr: u64, level: u32) -> u64 {
         match level {
-            3 => mpidr >> 32 & 0xff,
-            2 => mpidr >> 16 & 0xff,
-            1 => mpidr >> 8 & 0xff,
+            3 => (mpidr >> 32) & 0xff,
+            2 => (mpidr >> 16) & 0xff,
+            1 => (mpidr >> 8) & 0xff,
             0 => mpidr & 0xff,
             _ => panic!("invalid affinity level"),
         }
     }
 
     fn mpidr_to_affinity_level(mpidr: u64) -> u64 {
-        Self::mpidr_affinity_level(mpidr, 3) << 32
-            | Self::mpidr_affinity_level(mpidr, 2) << 16
-            | Self::mpidr_affinity_level(mpidr, 1) << 8
+        (Self::mpidr_affinity_level(mpidr, 3) << 32)
+            | (Self::mpidr_affinity_level(mpidr, 2) << 16)
+            | (Self::mpidr_affinity_level(mpidr, 1) << 8)
             | Self::mpidr_affinity_level(mpidr, 0)
     }
 
@@ -327,7 +327,7 @@ impl GicRedistributor {
 
     fn base_init(&mut self) {
         let typer = self.gicr_regs().TYPER.get() as usize;
-        let mut ppinum = typer >> 27 & 0x1f;
+        let mut ppinum = (typer >> 27) & 0x1f;
         ppinum = match ppinum {
             0 => 16,
             1 | 2 => 16 + 32 * ppinum,
