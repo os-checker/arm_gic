@@ -12,9 +12,6 @@
 //! Please contact the developer if you need this function
 
 #![no_std]
-#![feature(const_ptr_as_ref)]
-#![feature(const_option)]
-#![feature(const_nonnull_new)]
 
 use core::fmt;
 use core::fmt::{Debug, Formatter};
